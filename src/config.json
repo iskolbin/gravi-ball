@@ -1,0 +1,12 @@
+{
+  "ballRadius": 12,
+  "gravity": 1400,
+  "restitution": 0.35,
+  "bouncyRestitution": 0.95,
+  "bouncyMinSpeed": 320,
+  "maxSpeed": 2600,
+  "wheelSensitivity": 0.0028,
+  "dragSensitivity": 0.006,
+  "keyRotationSpeed": 2.4,
+  "substep": 0.0041667
+}

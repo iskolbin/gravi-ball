@@ -1,0 +1,35 @@
+{
+  "id": "l05",
+  "name": "Mud Fields",
+  "description": "Brown fields eat your speed. Brake before you need to brake.",
+  "size": [960, 540],
+  "start": [150, 120],
+  "goal": { "x": 800, "y": 430, "w": 120, "h": 70 },
+  "walls": [
+    { "x": 0, "y": 0, "w": 960, "h": 30 },
+    { "x": 0, "y": 510, "w": 960, "h": 30 },
+    { "x": 0, "y": 0, "w": 30, "h": 540 },
+    { "x": 930, "y": 0, "w": 30, "h": 540 },
+    { "x": 480, "y": 30, "w": 25, "h": 390 }
+  ],
+  "zones": [
+    {
+      "type": "brake",
+      "rect": { "x": 400, "y": 380, "w": 200, "h": 130 },
+      "dir": [0, 0],
+      "power": 6
+    },
+    {
+      "type": "brake",
+      "rect": { "x": 540, "y": 120, "w": 340, "h": 300 },
+      "dir": [0, 0],
+      "power": 2
+    }
+  ],
+  "coins": [
+    { "x": 700, "y": 300 },
+    { "x": 830, "y": 220 }
+  ],
+  "notes": [{ "x": 620, "y": 80, "id": "n5" }],
+  "parTime": 25
+}

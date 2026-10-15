@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>GraviBall — rotate the maze, not the ball</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="rotate-hint" class="rotate-hint">
+      <div class="rotate-hint-phone"></div>
+      <div>Rotate your device<br />to landscape</div>
+    </div>
+    <div id="app">
+      <!-- MENU -->
+      <section id="screen-menu" class="screen">
+        <div class="menu-box">
+          <div class="logo-ball"></div>
+          <h1>GRAVIBALL</h1>
+          <p class="tagline">
+            You don't control the ball. You control the world.
+            <br />
+            Rotate the maze. Deliver the ball to the exit.
+          </p>
+          <div class="menu-buttons">
+            <button class="btn big" data-action="levels">Play</button>
+            <button class="btn big" data-action="story">Story</button>
+            <button class="btn big" data-action="scores">Highscores</button>
+            <button class="btn big" data-action="editor">Level Editor</button>
+            <button class="btn" id="mobile-mode-btn" data-action="mobilemode" title="Auto: enabled on touch devices. Mobile mode keeps the maze fixed and rotates gravity instead (gyro or on-screen buttons).">Mobile mode: auto</button>
+          </div>
+          <p class="hint">
+            Mouse wheel / drag / ← → to rotate · R restart · P pause
+          </p>
+        </div>
+      </section>
+
+      <!-- LEVEL SELECT -->
+      <section id="screen-levels" class="screen hidden">
+        <header class="screen-header">
+          <button class="btn" data-action="menu"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg> Menu</button>
+          <h2>Levels</h2>
+          <span id="levels-coin-count" class="chip">—</span>
+        </header>
+        <div id="level-grid" class="level-grid"></div>
+        <div id="custom-levels" class="level-grid"></div>
+      </section>
+
+      <!-- GAME -->
+      <section id="screen-game" class="screen hidden">
+        <div id="game-root"></div>
+      </section>
+
+      <!-- EDITOR -->
+      <section id="screen-editor" class="screen hidden">
+        <header class="screen-header">
+          <button class="btn" data-action="menu"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg> Menu</button>
+          <h2>Level Editor</h2>
+          <div class="editor-savebar">
+            <input id="editor-name" type="text" placeholder="Level name" />
+            <button class="btn" id="editor-save">Save</button>
+            <button class="btn" id="editor-export">Export</button>
+            <button class="btn" id="editor-import">Import</button>
+            <input id="editor-import-file" type="file" accept="application/json" class="hidden-input" />
+          </div>
+        </header>
+        <div class="editor-layout">
+          <div class="editor-toolbar" id="editor-toolbar">
+            <button class="tool-btn active" data-tool="select" title="Select / move"></button>
+            <button class="tool-btn" data-tool="wall" title="Wall"></button>
+            <button class="tool-btn" data-tool="sticky" title="Sticky wall"></button>
+            <button class="tool-btn" data-tool="bouncy" title="Bouncy wall"></button>
+            <button class="tool-btn" data-tool="spike" title="Spike trap"></button>
+            <button class="tool-btn" data-tool="accel" title="Accelerating zone"></button>
+            <button class="tool-btn" data-tool="brake" title="Braking zone"></button>
+            <button class="tool-btn" data-tool="mover" title="Moving trap"></button>
+            <button class="tool-btn" data-tool="coin" title="Coin"></button>
+            <button class="tool-btn" data-tool="note" title="Story note"></button>
+            <button class="tool-btn" data-tool="goal" title="Goal zone"></button>
+            <button class="tool-btn" data-tool="start" title="Start position"></button>
+            <button class="tool-btn" data-tool="erase" title="Erase"></button>
+          </div>
+          <div class="editor-canvas-wrap">
+            <svg id="editor-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+          <div class="editor-side">
+            <div class="editor-props" id="editor-props">
+              <p class="muted">Select an object to edit its properties.</p>
+            </div>
+            <div class="editor-custom">
+              <h3>Saved levels</h3>
+              <div id="editor-custom-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCORES -->
+      <section id="screen-scores" class="screen hidden">
+        <header class="screen-header">
+          <button class="btn" data-action="menu"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg> Menu</button>
+          <h2>Highscores</h2>
+          <button class="btn" id="scores-reset">Reset</button>
+        </header>
+        <div id="scores-table"></div>
+      </section>
+
+      <!-- STORY -->
+      <section id="screen-story" class="screen hidden">
+        <header class="screen-header">
+          <button class="btn" data-action="menu"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg> Menu</button>
+          <h2>The Ball's Story</h2>
+          <span id="story-count" class="chip">0/0 found</span>
+        </header>
+        <div id="story-list"></div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

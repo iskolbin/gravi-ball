@@ -1,0 +1,24 @@
+{
+  "id": "l02",
+  "name": "Bounce House",
+  "description": "Orange walls throw you back. Use them to reach the exit up high.",
+  "size": [960, 540],
+  "start": [160, 120],
+  "goal": { "x": 640, "y": 60, "w": 160, "h": 80 },
+  "walls": [
+    { "x": 0, "y": 0, "w": 960, "h": 30 },
+    { "x": 0, "y": 510, "w": 960, "h": 30 },
+    { "x": 0, "y": 0, "w": 30, "h": 540 },
+    { "x": 930, "y": 0, "w": 30, "h": 540 },
+    { "x": 300, "y": 330, "w": 180, "h": 25 }
+  ],
+  "bouncy": [
+    { "x": 620, "y": 320, "w": 220, "h": 25 }
+  ],
+  "coins": [
+    { "x": 500, "y": 450 },
+    { "x": 730, "y": 180 }
+  ],
+  "notes": [{ "x": 760, "y": 250, "id": "n2" }],
+  "parTime": 15
+}
