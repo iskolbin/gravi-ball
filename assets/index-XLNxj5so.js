@@ -17,6 +17,7 @@ var et=Object.defineProperty;var st=(l,t,e)=>t in l?et(l,t,{enumerable:!0,config
       <div class="game-stage" id="g-stage"></div>
       <div class="game-flash" id="g-flash"></div>
       <div class="overlay hidden" id="g-overlay"><div class="overlay-box"></div></div>
+      <div class="build-label">build ${"2026-10-15T19:24:05.230Z".slice(0,10)}</div>
     `,this.timeEl=this.root.querySelector("#g-time"),this.coinEl=this.root.querySelector("#g-coins"),this.deathEl=this.root.querySelector("#g-deaths"),this.gravityEl=this.root.querySelector("#g-gravity"),this.flashEl=this.root.querySelector("#g-flash"),this.overlayEl=this.root.querySelector("#g-overlay"),this.root.querySelector('[data-game="exit"]').addEventListener("click",()=>{this.hooks.onExit()}),this.root.querySelector('[data-game="restart"]').addEventListener("click",()=>{this.restart()}),this.root.querySelector('[data-game="pause"]').addEventListener("click",()=>{this.togglePause()})}buildSvg(){const[t,e]=this.level.size,s=this.root.querySelector("#g-stage");let i;if(this.mobile)i=`0 0 ${t} ${e}`;else{const a=(t+e)/Math.SQRT2;i=`${t/2-a/2} ${e/2-a/2} ${a} ${a}`}const c=m("svg",{viewBox:i});s.appendChild(c),this.svg=c;const o=m("defs");o.innerHTML=`
       <radialGradient id="ball-grad" cx="35%" cy="30%" r="80%">
         <stop offset="0%" stop-color="#ffd76a"/>
